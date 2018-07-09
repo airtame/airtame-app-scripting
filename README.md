@@ -109,6 +109,12 @@ You can also retrieve settings from devices:
 airtame-application --get-settings --ip=192.168.1.1,192.168.1.2
 ```
 
+_This command also support password protected devices:_
+
+```
+airtame-application --get-settings --ip=192.168.1.1 --pwd=1234
+```
+
 You can as well put one or more ip for this command, and the result will be:
 
 ```json
@@ -177,6 +183,10 @@ You can as well put one or more ip for this command, and the result will be:
   }
 }
 ```
+
+_**You need as many passwords passwords as there are ips, otherwise this will not work. You can have devices with or without password, simply let the data empty. (ex. --pwd=1234,,4321, for 4 device, with the first and the third with password.)**_
+
+_**IMPORTANT: For the moment, password have to be command line compatible. This means that the set of character used is limited. And they should not contain comas.**_
 
 #### --get-state
 
@@ -376,12 +386,12 @@ Options:
 
 ## What's not in it ?
 
-* Upload of images (a workaround is explained at the bottom of this file)
-* Changing settings for streaming (for streaming quality)
-* Discovery of devices
-* Discovery of not setup devices
-* Extreme error handling
-* Password protection still have some limitations: The password must be compatible with being a command line arguments and password protection is supported only for set-settings at the moment.
+- Upload of images (a workaround is explained at the bottom of this file)
+- Changing settings for streaming (for streaming quality)
+- Discovery of devices
+- Discovery of not setup devices
+- Extreme error handling
+- Password protection still have some limitations: The password must be compatible with being a command line arguments and password protection is supported only for set-settings, get-state and get-settings at the moment.
 
 ### How to upload an image ?
 
@@ -398,8 +408,8 @@ You can provide a `splash_content` that way:
 
 Supported format are:
 
-* JPEG: mime_type = "image/jpeg"
-* PNG: mime_type = "image/png"
-* GIF: mime_type = "image/gif"
+- JPEG: mime_type = "image/jpeg"
+- PNG: mime_type = "image/png"
+- GIF: mime_type = "image/gif"
 
 `<encoded data>` should be replaced with the content of the image encoded in base64.
